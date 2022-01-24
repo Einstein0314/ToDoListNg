@@ -1,0 +1,32 @@
+<div class="task mt-4" [ngStyle]="{'background-color': task.isStar?'#FFF2DC':''}">
+  <div class="top p-3 d-flex align-items-center">
+    <!-- <input type="checkbox"> -->
+    <mat-checkbox [(ngModel)]="task.isFinished" (click)="reorder('finished')"></mat-checkbox>
+    <span [ngClass]="task.isFinished?'finished':''" [ngStyle]="{'flex': 1}" class="mx-3" *ngIf="!task.isEdit" (click)="changeState('title')">{{ task.title }}</span>
+    <input [(ngModel)]='task.title' style="flex: 1; max-width: 80%" *ngIf="task.isEdit" type="text" class="title mx-2 px-2" (blur)="changeState('title')">
+    <span class="mx-2"><i [ngClass]="task.isStar?'fas':'far'" class="fa-star" [ngStyle]="{'color': task.isStar?'#F5A623':''}" (click)="changeState('star')"></i></span>
+    <span class="mx-2"><i class="fas fa-pencil-alt" [ngStyle]="{'color': task.isPencil?'#4A90E2':''}" (click)="changeState('pencil')"></i></span>
+  </div>
+  <div class="content" *ngIf="task.isPencil">
+    <div class="deadline m-2 p-2">
+      <div class="mb-2"><i class="far fa-calendar-alt me-2"></i>Deadine</div>
+      <input class="ms-4 mx-1 p-1" type="text" placeholder="yyyy/mm/dd" [(ngModel)]="task.date">
+      <input class="mx-1 p-1" type="text" placeholder="hh:mm" [(ngModel)]="task.time">
+    </div>
+    <div class="file m-2 p-2">
+      <div><i class="far fa-file me-2"></i>File</div>
+      <i class="ms-4 mx-1 mt-2 fas fa-plus"></i>
+    </div>
+    <div class="comment m-2 p-2">
+      <div><i class="far fa-comment-dots me-2"></i>Comment</div>
+      <textarea class="ms-4 mx-1 mt-2" id="" cols="35" rows="7" [(ngModel)]="task.comment"></textarea>
+    </div>
+    <div class="bottom d-flex align-items-center">
+      <div *ngIf="!isSubTask" class="cancel text-center w-50 p-2" (click)="cancel()"><i class="me-2 fas fa-times"></i>Cancel</div>
+      <div *ngIf="!isSubTask" class="add text-center w-50 p-2" (click)="add()"><i class="me-2 fas fa-plus"></i>Add Task</div>
+      <div *ngIf="isSubTask" class="cancel text-center w-50 p-2" (click)="del()"><i class="me-2 fas fa-times"></i>Delete</div>
+      <div *ngIf="isSubTask" class="add text-center w-50 p-2" (click)="save()"><i class="me-2 fas fa-plus"></i>Save</div>
+    </div>
+  </div>
+</div>
+

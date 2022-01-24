@@ -1,0 +1,59 @@
+.task
+{
+  background: #F2F2F2;
+  box-shadow: 0 4px 4px 0 #C8C8C8;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.top
+{
+  border-radius: 5px 5px 0 0;
+  border-bottom: 2px solid #C8C8C8;
+}
+
+.title
+{
+  font-family: "微軟正黑體";
+  font-size: 1.5em;
+  color: #000000;
+}
+
+.mat-checkbox-frame
+{
+  border-color: #737373 !important;
+}
+
+textarea{
+  outline: none;
+  border: none;
+}
+
+.deadline > input
+{
+  max-width: 40%;
+}
+
+.file > .fa-plus{
+  color: white;
+  background: #C8C8C8;
+  border-radius: 2px;
+  padding: 6px 7px 6px 7px;
+}
+
+.cancel
+{
+  background-color: #FFFFFF;
+  color: #D0021B;
+}
+
+.add{
+  background: #4A90E2;
+  color: #FFFFFF;
+}
+
+.finished
+{
+  color: #9B9B9B;
+  text-decoration: line-through;
+}

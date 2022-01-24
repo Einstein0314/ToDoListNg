@@ -1,4 +1,6 @@
+import { Task } from 'src/app/models/Task';
 import { Component } from '@angular/core';
+import { FirebaseService } from './services/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ToDoListForMobile';
+  title = 'ToDoListMobile';
+  constructor(private _service: FirebaseService){
+    //firebase's datas load in
+    // _service.getCollection<Task>('Task').then(tasks=>{
+
+    // });
+  }
 }

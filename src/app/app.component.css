@@ -1,0 +1,62 @@
+.my-nav
+{
+  position: fixed;
+  bottom: 0;
+  height: 8vh;
+  background-color: #ffffff;
+  font-size: 1.5em;
+}
+
+.content
+{
+  height: 84vh;
+  background-color: #E1E1E1;
+}
+
+.top
+{
+  position: relative;
+  height: 8vh;
+}
+
+.top::after
+{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f002";
+  color: #959595;
+  font-size: 1.4em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(20% + 12px);
+}
+
+a
+{
+  text-decoration: none;
+  color: #959595;
+}
+
+.link-active
+{
+  color: #4A90E2;
+}
+
+input{
+  outline: none;
+  border: none;
+}
+
+.inp
+{
+  border: 2px solid #7c7c7c;
+  border-radius: 20px;
+  padding: 5px 5px 5px 15px;
+}
+
+.menu
+{
+  font-size: 1.4em;
+}
+
