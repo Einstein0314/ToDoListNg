@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     HomepageComponent,
     CompleteComponent,
-    ProgressComponent
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,

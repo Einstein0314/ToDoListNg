@@ -1,11 +1,17 @@
 <div class="task mt-4" [ngStyle]="{'background-color': task.isStar?'#FFF2DC':''}">
-  <div class="top p-3 d-flex align-items-center">
-    <!-- <input type="checkbox"> -->
-    <mat-checkbox [(ngModel)]="task.isFinished" (click)="reorder('finished')"></mat-checkbox>
-    <span [ngClass]="task.isFinished?'finished':''" [ngStyle]="{'flex': 1}" class="mx-3" *ngIf="!task.isEdit" (click)="changeState('title')">{{ task.title }}</span>
-    <input [(ngModel)]='task.title' style="flex: 1; max-width: 80%" *ngIf="task.isEdit" type="text" class="title mx-2 px-2" (blur)="changeState('title')">
-    <span class="mx-2"><i [ngClass]="task.isStar?'fas':'far'" class="fa-star" [ngStyle]="{'color': task.isStar?'#F5A623':''}" (click)="changeState('star')"></i></span>
-    <span class="mx-2"><i class="fas fa-pencil-alt" [ngStyle]="{'color': task.isPencil?'#4A90E2':''}" (click)="changeState('pencil')"></i></span>
+  <div class="top p-3">
+    <div class="d-flex align-items-center">
+      <mat-checkbox [(ngModel)]="task.isFinished" [checked]="task.isFinished" (ngModelChange)="changeState('finished')" ></mat-checkbox>
+      <span [ngClass]="task.isFinished?'finished':''" [ngStyle]="{'flex': 1}" class="mx-3" *ngIf="!task.isEdit" (click)="changeState('title')">{{ task.title }}</span>
+      <input [(ngModel)]='task.title' style="flex: 1; max-width: 80%" *ngIf="task.isEdit" type="text" class="title mx-2 px-2" (blur)="changeState('title')">
+      <span class="mx-2"><i [ngClass]="task.isStar?'fas':'far'" class="fa-star" [ngStyle]="{'color': task.isStar?'#F5A623':''}" (click)="changeState('star')"></i></span>
+      <span class="mx-2"><i class="fas fa-pencil-alt" [ngStyle]="{'color': task.isPencil?'#4A90E2':''}" (click)="changeState('pencil')"></i></span>
+    </div>
+    <div *ngIf="isSubTask && !task.isPencil" class="d-inline-flex mt-2 ms-4">
+      <div style="color: #757575;" *ngIf="task.date != ''" class="mx-2"><i class="far fa-calendar-alt me-2"></i>{{task.date}}</div>
+      <div style="color: #757575;" *ngIf="task.file != null" class="mx-2"><i class="far fa-file"></i></div>
+      <div style="color: #757575;" *ngIf="task.comment != ''" class="mx-2"><i class="far fa-comment-dots"></i></div>
+    </div>
   </div>
   <div class="content" *ngIf="task.isPencil">
     <div class="deadline m-2 p-2">
@@ -25,7 +31,7 @@
       <div *ngIf="!isSubTask" class="cancel text-center w-50 p-2" (click)="cancel()"><i class="me-2 fas fa-times"></i>Cancel</div>
       <div *ngIf="!isSubTask" class="add text-center w-50 p-2" (click)="add()"><i class="me-2 fas fa-plus"></i>Add Task</div>
       <div *ngIf="isSubTask" class="cancel text-center w-50 p-2" (click)="del()"><i class="me-2 fas fa-times"></i>Delete</div>
-      <div *ngIf="isSubTask" class="add text-center w-50 p-2" (click)="save()"><i class="me-2 fas fa-plus"></i>Save</div>
+      <div *ngIf="isSubTask" class="add text-center w-50 p-2" (click)="save()"><i class="me-2 fas fa-check"></i>Save</div>
     </div>
   </div>
 </div>

@@ -1,1 +1,3 @@
-<p>progress works!</p>
+<div *ngFor="let data of datas.reverse() | myFilter: {property: 'isFinished', type: false}">
+  <app-share-task [task]="data" (deleteEmitter)="del($event)" (updateEmitter)="update($event)"></app-share-task>
+</div>

@@ -1,4 +1,4 @@
 <app-share-task (addEmitter)="add($event)"></app-share-task>
-<div *ngFor="let data of datas; let i = index">
+<div *ngFor="let data of datas.reverse(); let i = index">
   <app-share-task [task]="data" (reoderEmitter)="reorder($event)" (deleteEmitter)="del($event)" (updateEmitter)="update($event)"></app-share-task>
 </div>

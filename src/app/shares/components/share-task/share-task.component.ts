@@ -1,3 +1,4 @@
+import { FirebaseService } from './../../../services/firebase.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from 'src/app/models/Task';
 
@@ -12,7 +13,7 @@ export class ShareTaskComponent implements OnInit {
   //return a event object: any
   //specified it as Task object
   @Output() addEmitter = new EventEmitter<Task>();
-  @Output() reoderEmitter = new EventEmitter<Task>();
+  @Output() reoderEmitter = new EventEmitter<Object>();
   @Output() deleteEmitter = new EventEmitter<Task>();
   @Output() updateEmitter = new EventEmitter<Task>();
   //property name
@@ -22,7 +23,7 @@ export class ShareTaskComponent implements OnInit {
   //or <Task>{} assign empty value to it
   isSubTask: boolean = true;
 
-  constructor() { }
+  constructor(private _service: FirebaseService) { }
 
   //最一開始跑的 所以不能在這之前使用未宣告的變數
   ngOnInit(): void {
@@ -47,7 +48,13 @@ export class ShareTaskComponent implements OnInit {
       case "pencil":
         this.task.isPencil = !this.task.isPencil;
         break;
+      case "finished":
+        //problem: click is DOM event and ngModel is in higher level
+        //so use (ngModelChange)
+        this.reorder('finished');
+        break;
     }
+    this._service.updateDoc<Task>('Task', this.task);
   }
 
   cancel()
@@ -67,7 +74,7 @@ export class ShareTaskComponent implements OnInit {
   reorder(type: string)
   {
     if(this.isSubTask)
-      this.reoderEmitter.emit(this.task);
+      this.reoderEmitter.emit({data: this.task, type: type});
   }
 
   save()
